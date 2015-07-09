@@ -40,7 +40,7 @@ if(names(TTDorder)[28] == measure){
 ttdWorking <- ttd[, names(ttd)%in%varNames]
 
 #rename the variables
-names(ttdWorking) <- c("Hegis.Desc", "Grad.YrSem", "Beg.YrSem", "Gr.Doc", "College", "Deg.Cd", "Hegis.Cd", "TTD")
+names(ttdWorking) <- c("GradYrSem","HegisDesc",  "BegYrSem", "GrDoc", "College", "DegCd", "HegisCd", "TTD")
 
 # create list of comparison groups
 sslist<-list(1515,1914,2001,2202,2203,2204,2205,2206,2207,2208,2220,2253,2255,2314,4961,5507)
@@ -50,15 +50,25 @@ physicplusmathlist<-list(1902,1905,1911,1926,1701,1707,701)
 lifescienceslist<-list(425,401,419,432,445,449,499,905)
 humanitieslist<-list(1504,1003,1006,1013,1132,1135,1501,1504,1509,1515,2256,2311,4905,4992,871 )
 
-ttdWorking$Hegis.Cd <- as.numeric(ttdWorking$Hegis.Cd)
+ttdWorking$Hegis.Cd <- as.numeric(ttdWorking$HegisCd)
 
 #create new grouping variable for comparison groups
 ttdWorking$group <- NA
-ttdWorking$group[ ttdWorking$Hegis.Cd%in%sslist] <- "SocSci"
-ttdWorking$group[ ttdWorking$Hegis.Cd%in%physicplusmathlist] <- "PhysicMathCS"
-ttdWorking$group[ ttdWorking$Hegis.Cd%in%lifescienceslist] <- "LifeSci"
-ttdWorking$group[ ttdWorking$Hegis.Cd%in%humanitieslist] <- "Humanities"
+ttdWorking$group[ ttdWorking$HegisCd%in%sslist] <- "SocSci"
+ttdWorking$group[ ttdWorking$HegisCd%in%physicplusmathlist] <- "PhysicMathCS"
+ttdWorking$group[ ttdWorking$HegisCd%in%lifescienceslist] <- "LifeSci"
+ttdWorking$group[ ttdWorking$HegisCd%in%humanitieslist] <- "Humanities"
 
 #save csv
-write.csv(ttdWorking, file = "C://Users/jstring/Documents/GitHub/grad_data/box/data/boxplot_data.csv")
+write.csv(ttdWorking, file = "C://Users/jstring/Documents/GitHub/grad_data/box/data/boxplot_data.csv", row.names = FALSE)
 
+#####
+# subset for working files
+##
+
+ttdSubset <- ttdWorking%>%
+  filter(College == "ENG")%>%
+  select(HegisDesc, TTD)
+
+ttdSubset$HegisDesc <- as.numeric(as.factor(ttdSubset$HegisDesc))
+write.csv(ttdSubset, file = "C://Users/jstring/Documents/GitHub/grad_data/box/data/subset_data.csv", row.names = FALSE)
