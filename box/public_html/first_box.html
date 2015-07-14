@@ -50,7 +50,7 @@ d3.csv("subset_data.csv", function(error, csv) {
 
   csv.forEach(function(x) {
     var e = Math.floor(x.HegisDesc-1),            //Math.floor was here, it rounds down, we need actuals
-        s = Math.abs(x.TTD),
+        s = +x.TTD,
         d = data[e];
     if (!d) d = data[e] = [s];
     else d.push(s);

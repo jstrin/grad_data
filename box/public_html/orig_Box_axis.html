@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<!--this version is based on jensgrubert's code here:
-http://bl.ocks.org/jensgrubert/7789216 -->
-
+<!--Original Box with Axis and Labels script from jensgurbert: http://bl.ocks.org/jensgrubert/7789216 -->
 <meta charset="utf-8">
 <style>
 
@@ -50,6 +48,7 @@ body {
 </style>
 <body>
 <script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="d3.v3.min.js"></script>
 <script src="boxAxes.js"></script>
 <script>
 var labels = true; // show the text labels beside individual boxplots?
@@ -62,7 +61,7 @@ var min = Infinity,
     max = -Infinity;
 	
 // parse in the data	
-d3.csv("data_for_Axis.csv", function(error, csv) {
+d3.csv("jensData.csv", function(error, csv) {
 	// using an array of arrays with
 	// data[n][2] 
 	// where n = number of columns in the csv file 
@@ -74,41 +73,25 @@ d3.csv("data_for_Axis.csv", function(error, csv) {
 	data[1] = [];
 	data[2] = [];
 	data[3] = [];
-	data[4] = [];
-	data[5] = [];
-	data[6] = [];
-	data[7] = [];        
 	// add more rows if your csv file has more columns
 
 	// add here the header of the csv file
-	data[0][0] = "Prog1";
-	data[1][0] = "Prog2";
-	data[2][0] = "Prog3";
-	data[3][0] = "Prog4";
-        data[4][0] = "Prog5";
-	data[5][0] = "Prog6";
-	data[6][0] = "Prog7";
-	data[7][0] = "Prog8";
+	data[0][0] = "Q1";
+	data[1][0] = "Q2";
+	data[2][0] = "Q3";
+	data[3][0] = "Q4";
 	// add more rows if your csv file has more columns
 
 	data[0][1] = [];
 	data[1][1] = [];
 	data[2][1] = [];
 	data[3][1] = [];
-        data[4][1] = [];
-	data[5][1] = [];
-	data[6][1] = [];
-	data[7][1] = [];
   
 	csv.forEach(function(x) {
-		var v1 = x.Prog1,
-			v2 = x.Prog2,
-			v3 = x.Prog3,
-			v4 = x.Prog4;
-                        v5 = x.Prog5,
-			v6 = x.Prog6,
-			v7 = x.Prog7,
-			v8 = x.Prog8;
+		var v1 = Math.floor(x.Q1),
+			v2 = Math.floor(x.Q2),
+			v3 = Math.floor(x.Q3),
+			v4 = Math.floor(x.Q4);
 			// add more variables if your csv file has more columns
 			
 		var rowMax = Math.max(v1, Math.max(v2, Math.max(v3,v4)));
@@ -118,10 +101,6 @@ d3.csv("data_for_Axis.csv", function(error, csv) {
 		data[1][1].push(v2);
 		data[2][1].push(v3);
 		data[3][1].push(v4);
-                data[4][1].push(v5);
-		data[5][1].push(v6);
-		data[6][1].push(v7);
-		data[7][1].push(v8);
 		 // add more rows if your csv file has more columns
 		 
 		if (rowMax > max) max = rowMax;
