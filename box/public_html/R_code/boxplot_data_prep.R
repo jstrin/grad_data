@@ -2,7 +2,7 @@ library(XLConnect)
 library(dplyr)
 
 #load workbook
-ttdWB <- loadWorkbook("C://Users/jstring/Documents/GitHub/grad_data/box/data/ttd_4-22-2015.xlsx")
+ttdWB <- loadWorkbook("C://Users/jstring/OneDrive/Data_website/ttd_4-22-2015.xlsx")
 
 # choose measure (form which enrollment date)
 
@@ -60,7 +60,7 @@ ttdWorking$group[ ttdWorking$HegisCd%in%lifescienceslist] <- "LifeSci"
 ttdWorking$group[ ttdWorking$HegisCd%in%humanitieslist] <- "Humanities"
 
 #save csv
-write.csv(ttdWorking, file = "C://Users/jstring/Documents/GitHub/grad_data/box/data/boxplot_data.csv", row.names = FALSE)
+#write.csv(ttdWorking, file = "C://Users/jstring/Documents/GitHub/grad_data/box/data/boxplot_data.csv", row.names = FALSE)
 
 #####
 # subset for working files
