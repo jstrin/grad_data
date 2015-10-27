@@ -111,7 +111,7 @@ d3.csv("data_for_Axis.csv", function(error, csv) {
 			v8 = x.Prog8;
 			// add more variables if your csv file has more columns
 			
-		var rowMax = Math.max(v1, Math.max(v2, Math.max(v3,v4)));
+		var rowMax = Math.max(v1, Math.max(v2, Math.max(v3, Math.max(v4, Math.max(v5, Math.max(v6, Math.max(v7, v8)))))));
 		var rowMin = Math.min(v1, Math.min(v2, Math.min(v3,v4)));
 
 		data[0][1].push(v1);
@@ -174,7 +174,7 @@ d3.csv("data_for_Axis.csv", function(error, csv) {
         .attr("text-anchor", "middle")  
         .style("font-size", "18px") 
         //.style("text-decoration", "underline")  
-        .text("Revenue 2012");
+        .text("Time To Degree");
  
 	 // draw y axis
 	svg.append("g")
